@@ -33,7 +33,36 @@ chmod +x build.sh
 ./build.sh
 ```
 
-## 🚀 Usage
+![Example Usage](img/example.png)  
+*Example output showing resource extraction*
+
+## 🕵️‍♂️ How to Find .resources Files
+
+### Step 1: Extract .NET Assembly
+1. Use a decompiler to export the project:
+   - **dnSpy** (Windows): [Download here](https://github.com/dnSpy/dnSpy)
+   - **ILSpy** (Cross-platform): [Download here](https://github.com/icsharpcode/ILSpy)
+
+2. Open the target executable (`YourApp.exe`) in your decompiler
+
+### Step 2: Locate Resources
+1. In the decompiler's tree view, look for:
+   ```
+   Properties > Resources.resources
+   ```
+   or
+   ```
+   YourApp > Resources > Resources.resources
+   ```
+
+2. Right-click the `.resources` file and select:
+   - **Export to Resources.resources** (dnSpy)
+   - **Save Resources** (ILSpy)
+
+> Tip: You can also export the whole project!
+
+![Decompiler View](img/decompiler_view.png)  
+*Example: Locating resources in dnSpy*
 
 ```bash
 # Windows
@@ -43,8 +72,6 @@ ExtractResources.exe Resources.resources
 mono ExtractResources Resources.resources
 ```
 
-![Example Usage](img/example.png)  
-*Example output showing resource extraction*
 
 ## ✨ Features
 
@@ -73,6 +100,11 @@ mono ExtractResources Resources.resources
 MIT License - See [LICENSE](LICENSE) for details
 
 ---
+
+## 💡 Tips
+- Look for multiple resource files (e.g., `Settings.resources`)
+- Check both the main assembly and referenced DLLs
+- Some resources may be embedded in code - search for `ResourceManager`
 
 > **Pro Tip**: Drag and drop `.resources` files directly onto the executable for quick extraction!
 
